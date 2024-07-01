@@ -5,6 +5,7 @@ import re
 from collections import Counter
 from PyQt5.QtWidgets import (QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit,
                              QPushButton, QTextEdit, QCheckBox, QFileDialog, QMessageBox)
+from PyQt5.QtGui import QIcon
 
 class BatchRenameTool(QWidget):
     def __init__(self):
@@ -47,7 +48,7 @@ class BatchRenameTool(QWidget):
         optionsLayout = QHBoxLayout()
         self.includeExtensionCheckBox = QCheckBox('包含扩展名')
         self.includeExtensionCheckBox.stateChanged.connect(self.updateReplaceLineEdit)  # 连接到更新函数
-        self.correctOrderCheckBox = QCheckBox('按正确集数顺序重命名')
+        self.correctOrderCheckBox = QCheckBox('按正确顺序重命名')
         self.removeSpecialCharCheckBox = QCheckBox('去除特殊符号')
         self.correctOrderCheckBox.stateChanged.connect(self.toggleSequenceInput)
         optionsLayout.addWidget(self.includeExtensionCheckBox)
@@ -237,6 +238,7 @@ class BatchRenameTool(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    app.setWindowIcon(QIcon("icon.ico"))
     ex = BatchRenameTool()
     ex.show()
     sys.exit(app.exec_())
